@@ -26,15 +26,18 @@ class Setback extends Controller
         return ($a_total < $b_total) ? 1 : -1;
       });
 
-      header('Refresh: 5;');
+      
       //dd($players);
       
       if(count($players) % 4 != 0){
+        header('Refresh: 60;');
         return view('display_overlay')->with('text', 'Waiting for Players');
       }
-      if(now()->format('i') % 5 == 0){
-        return view('display_overlay')->with('text', 'Anti-Burn Screen.<br>Scores will return shortly');
+      if(now()->format('i') % 2 == 0){
+        header('Refresh: 60;');
+        return view('display_overlay')->with('text', 'Scores will return shortly.');
       }
+      header('Refresh: 5;');
       return view('display')->with('players', $players);
 
     }
