@@ -28,8 +28,12 @@ class Setback extends Controller
 
       header('Refresh: 5;');
       //dd($players);
+      
       if(count($players) % 4 != 0){
-        return view('display_waiting');
+        return view('display_overlay')->with('text', 'Waiting for Players');
+      }
+      if(now()->format('i') % 5 == 0){
+        return view('display_overlay')->with('text', 'Anti-Burn Screen.<br>Scores will return shortly');
       }
       return view('display')->with('players', $players);
 
@@ -82,7 +86,33 @@ class Setback extends Controller
       
       Session::flash('success', 'The scores have been submitted successfully');
       return redirect()->back();
+    }
 
 
+    public function show_admin(){
+      $players = \App\Player::orderBy('active', 'desc')->orderBy('name','asc')->get();
+
+      return view('admin')->with('players', $players);
+    }
+
+    public function toggle_player($player){
+      $player = \App\Player::findOrFail($player);
+      $player->active = !$player->active;
+      $player->save();
+      Session::flash('success', 'Player "' . $player->name . '" ' . ($player->active ? 'activated' : 'deactivated'));
+      return redirect()->back();
+    }
+
+    public function add_player(Request $request){
+      Validator::make($request->all(), [
+        'name'            => ['required','unique:players,name']
+      ])->validate();
+
+      $player = new \App\Player;
+      $player->name = $request->name;
+      $player->active = true;
+      $player->save();
+      Session::flash('success', 'Player "' . $player->name . '" added.');
+      return redirect()->back();
     }
 }

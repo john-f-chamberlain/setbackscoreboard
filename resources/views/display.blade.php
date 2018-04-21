@@ -1,13 +1,21 @@
 <html lang="en">
   <head>
+      <title>Scoreboard Display</title>
     <meta charset="utf-8">
     <title>Setback Scoreboard :: Entry Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.0/flatly/bootstrap.min.css" integrity="sha384-kCsv8pSAWtRge/+zcLDeqwoWhTQSUX2esQPYOsocgrg1eMj7T2wrTJP348T3mpBU" crossorigin="anonymous">
+    
+    @if(count($players) == 4)
     <style>
-      
+        body{
+          zoom: 3; 
+    -moz-transform: scale(6); 
+    -moz-transform-origin: 0 0;
+        }
     </style>
+    @endif
 
   </head>
   <body>

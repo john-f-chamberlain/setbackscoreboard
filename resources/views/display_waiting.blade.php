@@ -1,3 +1,0 @@
-<html>
-  Waiting for players...
-</html>
