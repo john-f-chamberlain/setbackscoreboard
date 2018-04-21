@@ -11,16 +11,15 @@
 
   </head>
   <body>
-      <table class="table  table-striped">
+      <table class="table table-bordered text-center table-sm  table-striped">
       <thead class="thead-dark">
         <tr>
-          <th></th>
+          <th width="0"></th>
             <?php $g = 1; ?>
             @while( $g <= round(count($players)/4) )
-              <th>Game {{ $g }}</td>
-              <?php $g ++; ?>
+              <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Game {{ $g++ }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             @endwhile
-            <th>Total</th>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
         </tr>
       </thead>
       @foreach($players as $player)
@@ -29,11 +28,11 @@
         @else
         <tr>
         @endif
-          <th>{{ $player->name }}</th>
+          <th class="text-left">{{ $player->name }}</th>
           <?php $i = 1; $score = 0;?>
           @while( $i <= round(count($players)/4) )
             <td>{{ $player->score($i) }}</td>
-            <?php $score += $player->score($i); $i ++; ?>
+            <?php $score += $player->score($i ++); ?>
           @endwhile
           <td>{{ $score == 0 ? '' : $score }}</td>
         </tr>

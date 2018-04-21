@@ -26,7 +26,7 @@ class Setback extends Controller
         return ($a_total < $b_total) ? 1 : -1;
       });
 
-      header('Refresh: 2;');
+      header('Refresh: 5;');
       //dd($players);
       if(count($players) % 4 != 0){
         return view('display_waiting');
