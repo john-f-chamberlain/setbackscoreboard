@@ -26,6 +26,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{route('display')}}">Scoreboard</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('shuffle')}}">Table Shuffle</a>
+            </li>
           </ul>
         </div>
       </div>

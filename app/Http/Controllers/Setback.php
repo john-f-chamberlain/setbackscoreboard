@@ -29,11 +29,11 @@ class Setback extends Controller
       
       //dd($players);
       
-      if(count($players) % 4 != 0){
+      if(count($players) % 4 != 0 || count($players)== 0){
         header('Refresh: 60;');
         return view('display_overlay')->with('text', 'Waiting for Players');
       }
-      if(now()->format('i') % 2 == 0){
+      if(now()->format('i') % 10 == 0){
         header('Refresh: 60;');
         return view('display_overlay')->with('text', 'Scores will return shortly.');
       }
@@ -118,4 +118,11 @@ class Setback extends Controller
       Session::flash('success', 'Player "' . $player->name . '" added.');
       return redirect()->back();
     }
+    
+    public function random_player(){
+      $players = \App\Player::where('active', 1)->get()->shuffle();
+
+      return view('shuffle')->with('players', $players);
+    }
+
 }

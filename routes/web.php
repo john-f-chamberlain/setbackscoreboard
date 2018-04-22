@@ -18,3 +18,5 @@ Route::get("admin", "Setback@show_admin")->name("admin");
 
 Route::post("admin/add_player", "Setback@add_player")->name("add_player");
 Route::get("admin/toggle_player/{player}", "Setback@toggle_player")->name("toggle_player");
+Route::get("shuffle", "Setback@random_player")->name("shuffle");
+

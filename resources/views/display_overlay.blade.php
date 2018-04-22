@@ -37,7 +37,6 @@ img, div {
         text-align: center;
         color: #eee;
         font-family: sans-serif;
-        border: 1px solid #ff00ff;
       }
     </style>
   </head>
